@@ -365,16 +365,13 @@ footer .cols{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px}
 var CONFIG={
   // Dán link video YouTube của nhóm (watch?v=..., youtu.be/..., shorts/...). Để trống nếu chưa có.
   VIDEO_URL:"https://youtu.be/vKZgAAKSK64",
-  // Mã bản đồ Google My Maps (đoạn sau mid= trong link nhúng) để hiện cả 5 ghim cùng lúc. Để trống nếu chưa tạo.
-  MYMAPS_ID:"",
   // Hiện MSSV trên trang công khai? (đặt false nếu không muốn)
   SHOW_MSSV:true,
   // Link đồ án. Để trống thì thẻ hiện “Sắp cập nhật”.
   LINKS:[
-    {icon:"code",title:"Mã nguồn",desc:"Kho mã nguồn trang web trên GitHub",url:""},
+    {icon:"code",title:"Mã nguồn",desc:"Kho mã nguồn trang web trên GitHub",url:"https://github.com/thientin39/testing/tree/main"},
     {icon:"doc",title:"Báo cáo cuối kỳ",desc:"File báo cáo của nhóm",url:""},
     {icon:"video",title:"Video trên YouTube",desc:"Video cuối kỳ của nhóm",url:"https://youtu.be/vKZgAAKSK64"},
-    {icon:"pin",title:"Bản đồ Google My Maps",desc:"Bản đồ 5 địa điểm đã khảo sát",url:""},
     {icon:"folder",title:"Ảnh và tư liệu khảo sát",desc:"Thư mục Google Drive của nhóm",url:""}
   ]
 };
@@ -702,4 +699,3 @@ CONFIG.LINKS.forEach(function(l){
 </script>
 </body>
 </html>
-
