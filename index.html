@@ -288,6 +288,11 @@ section h2{position:relative}
 section h2::after{content:"";position:absolute;left:12px;bottom:-7px;height:3px;width:0;border-radius:3px;background:var(--accent);transition:width .9s .3s cubic-bezier(.2,.7,.2,1)}
 section.in h2::after{width:90px}
 @media (prefers-reduced-motion:reduce){.ch{opacity:1!important;transform:none!important;filter:none!important}}
+.s10{margin-left:8px;padding:1px 8px;border-radius:99px;background:var(--brand);color:#fff;font-size:.72rem;font-weight:700;white-space:nowrap}
+.avg{display:inline-block;margin-top:6px;padding:2px 10px;border-radius:99px;background:var(--bg);border:1.5px solid var(--line);font-size:.78rem;font-weight:700;color:var(--ink)}
+.pnote{margin:10px 0 0;font-size:.86rem;color:var(--muted)}.pnote b{color:var(--ink)}
+#nhanxet{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+#nhanxet p{margin:0;color:var(--muted);font-size:.92rem}
 footer{margin-top:72px;background:var(--brand);color:#dce8fb;border-radius:18px 18px 0 0;padding:28px 28px 36px;font-size:.9rem}
 footer .mark{--logo:#fff;height:50px;width:44px;margin-bottom:12px}
 footer a{color:#fff}
@@ -361,7 +366,7 @@ footer .cols{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px}
   <p class="sub">Bản đồ tự học IUH là đồ án cuối kỳ môn Kỹ năng làm việc nhóm của nhóm Cá chép hóa rồng, lớp DHDTMT22B.</p>
   <div class="intro">
     <div class="panel"><h3>Vì sao làm?</h3><p>Nhóm muốn giúp sinh viên IUH chọn nhanh nơi học yên tĩnh, vừa túi tiền và gần trường.</p></div>
-    <div class="panel"><h3>Nhóm đã làm gì?</h3><p>Chọn 3 địa điểm trong bán kính 3 km quanh trường, đến khảo sát trực tiếp và chấm theo 5 tiêu chí.</p></div>
+    <div class="panel"><h3>Nhóm đã làm gì?</h3><p>Chọn 3 địa điểm trong bán kính 3 km quanh trường, đến khảo sát trực tiếp và chấm theo 7 tiêu chí.</p></div>
     <div class="panel"><h3>Bạn dùng được gì?</h3><p>Nhận gợi ý địa điểm theo mục đích học, xem bản đồ, chỉ đường từ IUH và xem video của nhóm.</p></div>
   </div>
   <p class="introcta"><a class="btn fill" href="#thuyet-trinh">Xem thuyết trình</a></p>
@@ -406,8 +411,10 @@ footer .cols{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px}
 
 <section id="tieu-chi">
   <h2>Tiêu chí khảo sát</h2>
-  <p class="sub">Mỗi địa điểm được nhóm đến khảo sát trực tiếp và chấm theo 5 tiêu chí.</p>
+  <p class="sub">Mỗi địa điểm được nhóm đến khảo sát trực tiếp và chấm theo 7 tiêu chí.</p>
   <ul class="crit" id="crit"></ul>
+  <h3 style="margin:28px 0 12px">Nhận xét chung</h3>
+  <div id="nhanxet"></div>
 </section>
 
 <section id="tien-do">
@@ -518,9 +525,9 @@ var CONFIG={
 var IUH="Đại học Công nghiệp TP.HCM, 12 Nguyễn Văn Bảo, Gò Vấp";
 // Điền thông tin sau khảo sát vào "info": {cost:"",quiet:"",amen:"",space:""}. Sửa "q" thành địa chỉ chính xác của chi nhánh.
 var P=[
-{id:"lib",t:"lib",name:"Thư viện IUH",tag:"Thư viện",addr:"Trong khuôn viên IUH, 12 Nguyễn Văn Bảo, Gò Vấp",site:"https://lib.iuh.edu.vn/",q:"Thư viện Trường Đại học Công nghiệp TP.HCM",info:{}},
-{id:"tch",t:"cafe",name:"The Coffee House",tag:"Quán cà phê",addr:"Khu vực Gò Vấp (bán kính 3 km quanh IUH)",site:"https://thecoffeehouse.com/",q:"The Coffee House gần Đại học Công nghiệp TP.HCM Gò Vấp",info:{}},
-{id:"gd",t:"park",name:"Công viên Gia Định",tag:"Công viên",addr:"Đường Hoàng Minh Giám, P. Hạnh Thông, TP.HCM",site:"",q:"Công viên Gia Định Hoàng Minh Giám",info:{}}
+{id:"lib",t:"lib",name:"Thư viện IUH",tag:"Thư viện",addr:"Trong khuôn viên IUH, 12 Nguyễn Văn Bảo, Gò Vấp",site:"https://lib.iuh.edu.vn/",q:"Thư viện Trường Đại học Công nghiệp TP.HCM",info:{loc:["Nằm ngay trong khuôn viên IUH, cơ sở chính.", 10],cost:["Miễn phí sử dụng.", 10],space:["Rộng rãi, phù hợp cho sinh viên tự học.", 10],quiet:["Môi trường yên tĩnh, phù hợp để tập trung học tập.", 10],amen:["Có Wi-Fi và tiện ích phục vụ học tập; tuy nhiên Wi-Fi đôi lúc hơi yếu.", 9],facil:["Cơ sở vật chất tốt, đáp ứng nhu cầu học tập.", 10],safe:["Nằm trong khuôn viên trường, mức độ an toàn tốt.", 10]},note:"Phù hợp với hầu hết hình thức học tập. Dùng máy tính tại thư viện có thể hết chỗ nên cần chủ động sắp xếp thời gian. Cần giữ trật tự, nói chuyện nhỏ. Không gian có thể kém thoải mái hơn quán cà phê hoặc công viên.",fit:"Hầu hết hoạt động học tập: đọc sách, học lý thuyết, làm bài tập, dùng máy tính và học nhóm theo quy định của thư viện.",sum:"Lợi thế về vị trí, chi phí và môi trường yên tĩnh. Phù hợp nhiều hình thức học tập, đặc biệt khi cần tập trung hoặc dùng tài liệu. Sinh viên cần chú ý tình trạng chỗ ngồi và giữ yên lặng."},
+{id:"tch",t:"cafe",name:"The Coffee House",tag:"Quán cà phê",addr:"Khu vực Gò Vấp (bán kính 3 km quanh IUH)",site:"https://thecoffeehouse.com/",q:"The Coffee House gần Đại học Công nghiệp TP.HCM Gò Vấp",info:{loc:["Cách IUH (cơ sở chính) khoảng 1,1 km.", 9],cost:["Khoảng 39.000–89.000 đồng.", 8],space:["Bàn ghế sắp xếp hợp lý, có khu vực tương đối riêng tư và cảnh quan đẹp.", 9],quiet:["Tương đối yên tĩnh, thuận lợi để tập trung học tập.", 9],amen:["Các tiện ích phục vụ học tập khá đầy đủ.", 10],facil:["Cơ sở vật chất tốt, đáp ứng nhu cầu học tập.", 10],safe:["Mức độ an ninh tốt.", 10]},note:"Phí gửi xe không cao. Không gian có cảnh đẹp, tạo cảm hứng học tập. Quán có bán bánh, tiện ăn nhẹ trong giờ giải lao.",fit:"Làm bài tập, học lý thuyết và họp nhóm nhỏ.",sum:"Không gian đẹp, tương đối yên tĩnh và tiện ích tốt, phù hợp để làm bài tập, học lý thuyết hoặc họp nhóm nhỏ. Chi phí là yếu tố cần cân nhắc khi học trong thời gian dài."},
+{id:"gd",t:"park",name:"Công viên Gia Định",tag:"Công viên",addr:"Đường Hoàng Minh Giám, P. Hạnh Thông, TP.HCM",site:"",q:"Công viên Gia Định Hoàng Minh Giám",info:{loc:["Cách IUH (cơ sở chính) khoảng 2 km; thường xuyên kẹt xe.", 7],cost:["0–6.000 đồng, chủ yếu là phí gửi xe.", 10],space:["Rộng rãi, nhiều chỗ ngồi nhưng ít vị trí có bàn.", 10],quiet:["Khá ồn do tiếng xe cộ ở khu vực bên ngoài.", 7],amen:["Có nhà vệ sinh và mái che nắng.", 6],facil:["Đáp ứng tương đối tốt nhu cầu học tập.", 8],safe:["Mức độ an ninh tương đối tốt.", 7]},note:"Nên học vào sáng sớm hoặc buổi chiều. Buổi trưa khá nóng; buổi tối thiếu ánh sáng và cần chú ý an toàn.",fit:"Đọc sách, luyện tập thuyết trình, học lý thuyết và học nhóm.",sum:"Ưu điểm về chi phí thấp và không gian ngoài trời rộng rãi, phù hợp hoạt động học tập linh hoạt. Sinh viên cần chọn thời gian phù hợp để hạn chế nắng nóng, tiếng ồn và bất tiện về ánh sáng."}
 ];
 var M=[
 {n:"Trương Quốc Đạt",id:"26669731",r:["Trưởng nhóm","Điều phối"],t:"ks"},
@@ -563,10 +570,12 @@ var TEAM={ks:["Nhóm khảo sát","--lib"],pt:["Nhóm phân tích","--cafe"],tk:
 var MAJOR="Công nghệ kỹ thuật máy tính";
 var CRIT=[
 ["pin","Vị trí","Khoảng cách từ IUH và đường đi, trong bán kính 3 km."],
-["coin","Chi phí","Mức chi tiêu khoảng 20–50 nghìn đồng mỗi lượt."],
-["desk","Không gian học tập","Chỗ ngồi, bàn ghế và ánh sáng có phù hợp để học."],
-["plug","Tiện ích","Những thứ hỗ trợ việc học như Wi-Fi, ổ điện, giờ mở cửa."],
-["quiet","Mức độ yên tĩnh","Độ ồn và khả năng giữ tập trung."]
+["coin","Chi phí","Phí sử dụng, phí gửi xe; mục tiêu khoảng 20–50 nghìn đồng mỗi lượt."],
+["desk","Không gian","Chỗ ngồi, bàn ghế và ánh sáng có phù hợp để học."],
+["quiet","Độ yên tĩnh","Độ ồn và khả năng giữ tập trung."],
+["plug","Tiện ích","Những thứ hỗ trợ việc học như Wi-Fi, ổ điện, nhà vệ sinh, mái che."],
+["tool","Cơ sở vật chất","Mức đáp ứng nhu cầu học tập của khu vực."],
+["shield","An ninh","Mức độ an toàn của địa điểm."]
 ];
 var ICON={
 code:'<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
@@ -578,6 +587,8 @@ coin:'<circle cx="12" cy="12" r="10"/><path d="M15 9.5a3 3 0 0 0-3-1.5c-1.7 0-3 
 desk:'<rect x="3" y="4" width="18" height="12" rx="2"/><line x1="8" y1="20" x2="16" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/>',
 plug:'<path d="M9 2v6M15 2v6"/><path d="M6 8h12v4a6 6 0 0 1-12 0z"/><line x1="12" y1="18" x2="12" y2="22"/>',
 quiet:'<path d="M11 5 6 9H2v6h4l5 4z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/>',
+tool:'<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/>',
+shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
 link:'<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>'
 };
 function svg(name){return '<svg viewBox="0 0 24 24" aria-hidden="true">'+ICON[name]+'</svg>'}
@@ -655,18 +666,20 @@ function setView(v){
 }
 document.querySelectorAll("[data-v]").forEach(function(b){b.addEventListener("click",function(){setView(b.dataset.v)})});
 
-var INFO=[["cost","Chi phí"],["quiet","Độ yên tĩnh"],["amen","Tiện ích"],["space","Không gian"]];
+var INFO=[["loc","Vị trí"],["cost","Chi phí"],["space","Không gian"],["quiet","Độ yên tĩnh"],["amen","Tiện ích"],["facil","Cơ sở vật chất"],["safe","An ninh"]];
+function avg(p){var s=0;INFO.forEach(function(f){s+=p.info[f[0]][1]});return(s/INFO.length).toFixed(1).replace(".",",")}
 function cards(){
  list.textContent="";
  P.forEach(function(p){
   if(cur!=="all"&&p.t!==cur)return;
   var li=mk("li","card"+(sel===p.id?" on":""));li.id="c-"+p.id;li.style.setProperty("--c","var(--"+p.t+")");
   var b=mk("button","sel");b.type="button";b.setAttribute("aria-label","Xem "+p.name+" trên bản đồ");
-  b.appendChild(mk("span","tag",p.tag));b.appendChild(mk("h3",null,p.name));b.appendChild(mk("p","addr",p.addr));
+  b.appendChild(mk("span","tag",p.tag));b.appendChild(mk("h3",null,p.name));b.appendChild(mk("p","addr",p.addr));if(p.info.loc)b.appendChild(mk("span","avg","Điểm trung bình "+avg(p)+"/10"));
   b.addEventListener("click",function(){pick(p.id,false)});li.appendChild(b);
   var dl=mk("dl","info");
-  INFO.forEach(function(f){dl.appendChild(mk("dt",null,f[1]));var v=p.info&&p.info[f[0]];dl.appendChild(mk("dd",v?"":"na",v||"Đang cập nhật"))});
+  INFO.forEach(function(f){dl.appendChild(mk("dt",null,f[1]));var v=p.info&&p.info[f[0]],dd=mk("dd",v?"":"na",v?v[0]:"Đang cập nhật");if(v)dd.appendChild(mk("span","s10",v[1]+"/10"));dl.appendChild(dd)});
   li.appendChild(dl);
+   [["Lưu ý: ",p.note],["Phù hợp với: ",p.fit]].forEach(function(x){if(x[1]){var n=mk("p","pnote");n.appendChild(mk("b",null,x[0]));n.appendChild(document.createTextNode(x[1]));li.appendChild(n)}});
   var bt=mk("div","btns");
   [["Mở Google Maps",openUrl(p.q),"btn fill"],["Chỉ đường từ IUH",dirUrl(p.q),"btn"]].concat(p.site?[["Website",p.site,"btn"]]:[]).forEach(function(x){
    var a=mk("a",x[2],x[0]);a.href=x[1];a.target="_blank";a.rel="noopener";bt.appendChild(a)});
@@ -684,14 +697,15 @@ document.querySelectorAll("[data-f]").forEach(function(b){b.addEventListener("cl
  document.querySelectorAll("[data-f]").forEach(function(o){o.setAttribute("aria-pressed",o===b)});
  draw();cards();showMap()})});
 draw();cards();setView("svg");
+var nx=$("nhanxet");P.forEach(function(p){var d=mk("div","panel");d.appendChild(mk("h3",null,p.name+" · "+avg(p)+"/10"));d.appendChild(mk("p",null,p.sum));nx.appendChild(d)});
 
 /* ---------- Gợi ý địa điểm ---------- */
 // Điểm 0–3 cho từng địa điểm theo 7 đặc điểm. Sau khảo sát, nhóm sửa số ở đây cho sát thực tế.
 var AT=[["quiet","yên tĩnh"],["group","học nhóm được"],["power","có ổ điện, Wi-Fi"],["drink","có đồ uống"],["out","thoáng, ngoài trời"],["cheap","chi phí thấp"],["talk","thoải mái nói chuyện"]];
 var FIT={
- lib:{quiet:3,group:1,power:2,drink:0,out:0,cheap:3,talk:0},
- tch:{quiet:1,group:3,power:3,drink:3,out:0,cheap:1,talk:3},
- gd:{quiet:2,group:2,power:0,drink:1,out:3,cheap:3,talk:3}
+ lib:{quiet:3,group:2,power:2,drink:0,out:0,cheap:3,talk:0},
+ tch:{quiet:2,group:3,power:3,drink:3,out:0,cheap:1,talk:3},
+ gd:{quiet:1,group:2,power:0,drink:1,out:3,cheap:3,talk:3}
 };
 // Mục đích: trọng số cho từng đặc điểm
 var PURP=[
